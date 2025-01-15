@@ -1,16 +1,4 @@
 services:
-  mysql:
-    image: mysql:9.1
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_USER=petclinic
-      - MYSQL_PASSWORD=petclinic
-      - MYSQL_DATABASE=petclinic
-    volumes:
-      - "./conf.d:/etc/mysql/conf.d:ro"
   postgres:
     image: postgres:17.0
     restart: always
@@ -20,3 +8,29 @@ services:
       - POSTGRES_PASSWORD=petclinic
       - POSTGRES_USER=petclinic
       - POSTGRES_DB=petclinic
+
+  # http://localhost:23000/
+  grafana:
+    build: './monitoring/config/grafana'
+    container_name: grafana
+    ports:
+      - "23000:3000"
+    restart: always
+    volumes:
+      - ./monitoring/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  # http://localhost:29090/
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "29090:9090"
+    restart: always
+    volumes:
+      - ./monitoring/config/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--log.level=debug'
