@@ -20,6 +20,16 @@ export PATH=$JAVA_HOME/bin:$PATH
 echo "Using Java version:"
 java -version
 
+# Пересборка проекта с Maven Wrapper и отключением тестов
+echo "Building the project with Maven Wrapper (skipping tests)..."
+./mvnw clean package -DskipTests
+
+# Проверяем, что сборка прошла успешно
+if [[ $? -ne 0 ]]; then
+  echo "Build failed. Exiting..."
+  exit 1
+fi
+
 POSTGRES_URL="jdbc:postgresql://localhost:35432/petclinic"
 export POSTGRES_URL
 
