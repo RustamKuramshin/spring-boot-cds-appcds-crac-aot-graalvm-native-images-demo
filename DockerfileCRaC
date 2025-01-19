@@ -1,0 +1,17 @@
+FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-runtime-container-pro:jre-17-crac-musl AS builder
+WORKDIR /builder
+
+COPY pom.xml ./
+COPY mvnw .
+COPY .mvn .mvn
+
+RUN ./mvnw verify --fail-never
+
+COPY src ./src
+
+RUN ./mvnw clean package -DskipTests
+
+FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-runtime-container-pro:jre-17-crac-musl
+WORKDIR /app
+
+COPY --from=builder /builder/target/spring-petclinic-3.4.0-SNAPSHOT.jar /app/spring-petclinic.jar

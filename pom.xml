@@ -110,6 +110,13 @@
       <artifactId>micrometer-registry-prometheus</artifactId>
     </dependency>
 
+    <!-- CRaC   -->
+    <dependency>
+      <groupId>org.crac</groupId>
+      <artifactId>crac</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+
     <!-- Webjars -->
     <dependency>
       <groupId>org.webjars</groupId>

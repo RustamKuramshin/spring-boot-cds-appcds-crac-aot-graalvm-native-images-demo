@@ -50,3 +50,6 @@ _site/
 *.css
 !petclinic.css
 /monitoring/grafana/
+crac-files/*
+!crac-files/.gitkeep
+
