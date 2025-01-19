@@ -1,0 +1,21 @@
+FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-native-image-kit-container:jdk-17-nik-23-musl AS builder
+WORKDIR /builder
+
+COPY pom.xml ./
+COPY mvnw .
+COPY .mvn .mvn
+
+RUN ./mvnw verify --fail-never
+
+COPY src ./src
+
+RUN ./mvnw -Pnative clean native:compile -DskipTests
+
+FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-linux-base:23-musl
+WORKDIR /app
+
+COPY --from=builder /builder/target/spring-petclinic /app/spring-petclinic
+
+RUN chmod +x spring-petclinic
+
+ENTRYPOINT ["./spring-petclinic"]
