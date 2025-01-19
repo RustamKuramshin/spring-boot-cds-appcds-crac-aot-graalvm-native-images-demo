@@ -15,6 +15,23 @@ services:
     depends_on:
       - petclinic-db
 
+  petclinic-aot:
+    build:
+      dockerfile: DockerfileAOT
+      context: .
+    container_name: petclinic-aot
+    restart: always
+    ports:
+      - "8091:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+      - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinicaot
+      - SPRING_APPLICATION_NAME=petclinic-aot
+    tty: true
+    depends_on:
+      - petclinic-db
+      - petclinic
+
   petclinic-db:
     build:
       dockerfile: ./Dockerfile
