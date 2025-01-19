@@ -33,4 +33,4 @@ fi
 POSTGRES_URL="jdbc:postgresql://localhost:35432/petclinic"
 export POSTGRES_URL
 
-java -jar target/spring-petclinic-3.4.0-SNAPSHOT.jar --spring.profiles.active=postgres
+java -jar target/spring-petclinic-*.jar --spring.profiles.active=postgres

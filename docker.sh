@@ -6,7 +6,7 @@ docker run petclinica:latest
 docker build -t petclinica-cds -f DockerfileCDS .
 docker run petclinica-cds:latest
 
-docker build -t petclinica-aot-optimizations -f DockerfileAOTOptimizations .
+docker build -t petclinica-aot-optimizations -f DockerfileAOT .
 docker run petclinica-aot-optimizations
 
 docker build -t petclinica-native -f DockerfileNative .

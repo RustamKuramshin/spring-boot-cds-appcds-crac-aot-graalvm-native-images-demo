@@ -14,7 +14,7 @@ RUN ./mvnw clean package -DskipTests
 FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-runtime-container-pro:jre-17-musl AS extractor
 WORKDIR /extractor
 
-COPY --from=builder /builder/target/spring-petclinic-3.4.0-SNAPSHOT.jar /extractor/spring-petclinic.jar
+COPY --from=builder /builder/target/spring-petclinic-*.jar /extractor/spring-petclinic.jar
 
 RUN java -Djarmode=tools -jar spring-petclinic.jar extract --layers --destination extracted
 
@@ -26,4 +26,4 @@ COPY --from=extractor /extractor/extracted/spring-boot-loader/ ./
 COPY --from=extractor /extractor/extracted/snapshot-dependencies/ ./
 COPY --from=extractor /extractor/extracted/application/ ./
 
-ENTRYPOINT ["java", "-jar", "spring-petclinic.jar"]
+CMD ["java", "-jar", "spring-petclinic.jar"]
