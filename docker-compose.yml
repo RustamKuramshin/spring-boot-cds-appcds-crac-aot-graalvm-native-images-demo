@@ -1,13 +1,19 @@
 services:
-  postgres:
-    image: postgres:17.0
-    restart: always
+  petclinic-db:
+    build:
+      dockerfile: ./Dockerfile
+      context: postgres
+    container_name: petclinic-db
     ports:
       - "35432:5432"
+    restart: always
+    volumes:
+      - petclinic_data:/var/lib/postgresql/data
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf
     environment:
-      - POSTGRES_PASSWORD=petclinic
       - POSTGRES_USER=petclinic
-      - POSTGRES_DB=petclinic
+      - POSTGRES_PASSWORD=petclinic
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
 
   # http://localhost:23000/
   grafana:
@@ -21,6 +27,8 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
 
   # http://localhost:29090/
   prometheus:
@@ -34,3 +42,6 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--log.level=debug'
+
+volumes:
+  petclinic_data:
