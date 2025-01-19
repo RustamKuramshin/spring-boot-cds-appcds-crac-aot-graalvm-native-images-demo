@@ -9,7 +9,7 @@ RUN ./mvnw verify --fail-never
 
 COPY src ./src
 
-RUN ./mvnw -Pnative clean native:compile -DskipTests
+RUN ./mvnw -Pnative clean native:compile -Dspring.profiles.active=postgres -DskipTests
 
 FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-linux-base:23-musl
 WORKDIR /app

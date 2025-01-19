@@ -14,3 +14,8 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['petclinic-cds:8081']
+  - job_name: 'petclinic-crac'
+    scrape_interval: 5s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['petclinic-crac:8081']

@@ -50,6 +50,37 @@ services:
       - petclinic
       - petclinic-aot
 
+  petclinic-crac:
+    build:
+      dockerfile: DockerfileCRaC
+      context: .
+    container_name: petclinic-crac
+    restart: no
+    ports:
+      - "8093:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=petclinic-crac
+      - CRAC_RESTORE
+    tty: true
+    cap_add:
+      - CHECKPOINT_RESTORE
+      - SYS_PTRACE
+    volumes:
+      - ./crac-files:/app/crac-files
+    depends_on:
+      - petclinic-db
+      - petclinic
+      - petclinic-aot
+      - petclinic-cds
+    command: >
+      sh -c "
+      if [ \"$CRAC_RESTORE\" = \"true\" ]; then
+        java -XX:CRaCRestoreFrom=/app/crac-files;
+      else
+        java -XX:CRaCCheckpointTo=/app/crac-files -jar spring-petclinic.jar;
+      fi
+      "
+
   petclinic-db:
     build:
       dockerfile: ./Dockerfile
