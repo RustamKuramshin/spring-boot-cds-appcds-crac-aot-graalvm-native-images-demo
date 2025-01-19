@@ -32,6 +32,24 @@ services:
       - petclinic-db
       - petclinic
 
+  petclinic-cds:
+    build:
+      dockerfile: DockerfileCDS
+      context: .
+    container_name: petclinic-cds
+    restart: always
+    ports:
+      - "8092:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+      - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petcliniccds
+      - SPRING_APPLICATION_NAME=petclinic-cds
+    tty: true
+    depends_on:
+      - petclinic-db
+      - petclinic
+      - petclinic-aot
+
   petclinic-db:
     build:
       dockerfile: ./Dockerfile
