@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-groovy generateData.groovy 100 petclinic,petclinicaot,petcliniccds,petcliniccrac,petclinicnative
+groovy generateData.groovy 10000 petclinic,petclinicaot,petcliniccds,petcliniccrac,petclinicnative
