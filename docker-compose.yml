@@ -11,6 +11,11 @@ services:
       - SPRING_PROFILES_ACTIVE=postgres
       - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinic
       - SPRING_APPLICATION_NAME=petclinic
+      - SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE=20
+      - SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE=10
+      - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
+      - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
+      - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
     tty: true
 
   petclinic-aot:
@@ -25,6 +30,11 @@ services:
       - SPRING_PROFILES_ACTIVE=postgres
       - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinicaot
       - SPRING_APPLICATION_NAME=petclinic-aot
+      - SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE=20
+      - SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE=10
+      - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
+      - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
+      - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
     tty: true
 
   petclinic-cds:
@@ -39,6 +49,11 @@ services:
       - SPRING_PROFILES_ACTIVE=postgres
       - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petcliniccds
       - SPRING_APPLICATION_NAME=petclinic-cds
+      - SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE=20
+      - SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE=10
+      - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
+      - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
+      - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
     tty: true
 
   petclinic-crac:
@@ -52,6 +67,11 @@ services:
     environment:
       - SPRING_APPLICATION_NAME=petclinic-crac
       - CRAC_RESTORE
+      - SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE=20
+      - SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE=10
+      - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
+      - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
+      - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
     tty: true
     cap_add:
       - CHECKPOINT_RESTORE
@@ -79,6 +99,11 @@ services:
       - SPRING_PROFILES_ACTIVE=postgres
       - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinicnative
       - SPRING_APPLICATION_NAME=petclinic-native
+      - SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE=20
+      - SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE=10
+      - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
+      - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
+      - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
     tty: true
 
   petclinic-db:
@@ -118,7 +143,6 @@ services:
       - "29090:9090"
     restart: always
     volumes:
-      - prometheus_data:/prometheus
       - ./monitoring/config/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -138,4 +162,3 @@ services:
 volumes:
   petclinic_data:
   grafana_data:
-  prometheus_data:
