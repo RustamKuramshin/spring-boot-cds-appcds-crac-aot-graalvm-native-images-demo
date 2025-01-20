@@ -19,4 +19,9 @@ docker run -it --cap-add=CHECKPOINT_RESTORE --cap-add=SYS_PTRACE --rm --name pet
 #docker run -it --cap-add=CHECKPOINT_RESTORE --cap-add=SYS_PTRACE --rm --name petclinica-crac-ff -v $PWD/crac-files:/app/crac-files petclinica-crac-ff java -XX:CRaCCheckpointTo=/app/crac-files -jar spring-petclinic.jar
 docker exec petclinica-crac-ff jcmd spring-petclinic.jar JDK.checkpoint
 docker run -it --cap-add=CHECKPOINT_RESTORE --cap-add=SYS_PTRACE --rm --name petclinica-crac-ff-restore -v $PWD/crac-files:/app/crac-files petclinica-crac-ff java -XX:CRaCRestoreFrom=/app/crac-files
+
+docker compose --progress=plain up -d petclinic
+docker compose --progress=plain up -d petclinic-aot
+docker compose --progress=plain up -d petclinic-cds
+docker compose --progress=plain up -d petclinic-crac
 docker compose --progress=plain up -d petclinic-native
