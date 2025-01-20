@@ -124,6 +124,17 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--log.level=debug'
 
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    restart: always
+    ports:
+      - "9090:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
 volumes:
   petclinic_data:
   grafana_data:
