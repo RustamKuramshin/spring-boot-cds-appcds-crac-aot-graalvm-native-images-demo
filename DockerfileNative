@@ -1,7 +1,7 @@
 FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-native-image-kit-container:jdk-17-nik-23-musl AS builder
 WORKDIR /builder
 
-COPY pom.xml ./
+COPY pom-for-native.xml ./pom.xml
 COPY mvnw .
 COPY .mvn .mvn
 
@@ -9,7 +9,9 @@ RUN ./mvnw verify --fail-never
 
 COPY src ./src
 
-RUN ./mvnw -Pnative clean native:compile -Dspring.profiles.active=postgres -DskipTests
+RUN echo "spring.profiles.active=postgres" >> src/main/resources/application.properties
+
+RUN ./mvnw -Pnative clean native:compile -DskipTests
 
 FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-linux-base:23-musl
 WORKDIR /app

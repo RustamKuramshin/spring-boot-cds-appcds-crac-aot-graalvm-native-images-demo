@@ -12,8 +12,6 @@ services:
       - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinic
       - SPRING_APPLICATION_NAME=petclinic
     tty: true
-    depends_on:
-      - petclinic-db
 
   petclinic-aot:
     build:
@@ -28,9 +26,6 @@ services:
       - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinicaot
       - SPRING_APPLICATION_NAME=petclinic-aot
     tty: true
-    depends_on:
-      - petclinic-db
-      - petclinic
 
   petclinic-cds:
     build:
@@ -45,10 +40,6 @@ services:
       - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petcliniccds
       - SPRING_APPLICATION_NAME=petclinic-cds
     tty: true
-    depends_on:
-      - petclinic-db
-      - petclinic
-      - petclinic-aot
 
   petclinic-crac:
     build:
@@ -67,11 +58,6 @@ services:
       - SYS_PTRACE
     volumes:
       - ./crac-files:/app/crac-files
-    depends_on:
-      - petclinic-db
-      - petclinic
-      - petclinic-aot
-      - petclinic-cds
     command: >
       sh -c "
       if [ \"$CRAC_RESTORE\" = \"true\" ]; then
@@ -80,6 +66,20 @@ services:
         java -XX:CRaCCheckpointTo=/app/crac-files -jar spring-petclinic.jar;
       fi
       "
+
+  petclinic-native:
+    build:
+      dockerfile: DockerfileNative
+      context: .
+    container_name: petclinic-native
+    restart: always
+    ports:
+      - "8094:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+      - POSTGRES_URL=jdbc:postgresql://petclinic-db:5432/petclinicnative
+      - SPRING_APPLICATION_NAME=petclinic-native
+    tty: true
 
   petclinic-db:
     build:
@@ -109,8 +109,6 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
-    depends_on:
-      - prometheus
 
   # http://localhost:29090/
   prometheus:
@@ -125,9 +123,6 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--log.level=debug'
-    depends_on:
-      - petclinic
-      - petclinic-db
 
 volumes:
   petclinic_data:
