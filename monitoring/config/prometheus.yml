@@ -1,4 +1,9 @@
 scrape_configs:
+  - job_name: 'petclinic-local'
+    scrape_interval: 5s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8081']
   - job_name: 'petclinic'
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'

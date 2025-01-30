@@ -53,3 +53,4 @@ _site/
 crac-files/*
 !crac-files/.gitkeep
 
+/scripts/jmeter.log

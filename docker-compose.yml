@@ -161,4 +161,3 @@ services:
 
 volumes:
   petclinic_data:
-  grafana_data:

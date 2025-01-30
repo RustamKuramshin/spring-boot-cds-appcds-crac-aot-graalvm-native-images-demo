@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -104,11 +104,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.0",
       "targets": [
         {
           "datasource": {
@@ -174,6 +175,19 @@
           "legendFormat": "petclinic-native",
           "range": true,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "process_cpu_usage{application=\"petclinic-local\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "petclinic-local",
+          "range": true,
+          "refId": "F"
         }
       ],
       "title": "CPU Usage",
@@ -259,11 +273,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.0",
       "targets": [
         {
           "datasource": {
@@ -337,6 +352,21 @@
           "metric": "",
           "range": true,
           "refId": "E",
+          "step": 2400
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(jvm_memory_used_bytes{application=\"petclinic-local\"})",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 2,
+          "legendFormat": "petclinic-local",
+          "metric": "",
+          "range": true,
+          "refId": "F",
           "step": 2400
         }
       ],
@@ -422,11 +452,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.0",
       "targets": [
         {
           "datasource": {
@@ -491,6 +522,19 @@
           "legendFormat": "petclinic-native",
           "range": true,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(http_server_requests_seconds_count{application=\"petclinic-local\"}[10s]))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "petclinic-local",
+          "range": true,
+          "refId": "F"
         }
       ],
       "title": "Throughput",
@@ -575,11 +619,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.0",
       "targets": [
         {
           "datasource": {
@@ -645,6 +690,19 @@
           "legendFormat": "petclinic-native",
           "range": true,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(rate(http_server_requests_seconds_sum{application=\"petclinic-local\", status!~\"5..\"}[10s]))/sum(rate(http_server_requests_seconds_count{application=\"petclinic-local\", status!~\"5..\"}[10s]))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "petclinic-local",
+          "range": true,
+          "refId": "F"
         }
       ],
       "title": "Average latency",
@@ -729,11 +787,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.0",
       "targets": [
         {
           "datasource": {
@@ -799,6 +858,19 @@
           "legendFormat": "petclinic-native",
           "range": true,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "application_ready_time_seconds{application=\"petclinic-local\"}",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "petclinic-local",
+          "range": true,
+          "refId": "F"
         }
       ],
       "title": "Ready Time",
@@ -813,13 +885,13 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Comparison of Spring Boot optimizations",
   "uid": "deaiuq750y4n4f",
-  "version": 9,
+  "version": 7,
   "weekStart": ""
 }
