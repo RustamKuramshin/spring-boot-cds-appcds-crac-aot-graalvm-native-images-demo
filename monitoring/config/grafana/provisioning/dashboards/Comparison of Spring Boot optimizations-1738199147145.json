@@ -370,7 +370,7 @@
           "step": 2400
         }
       ],
-      "title": "JVM Total",
+      "title": "JVM Memory Used",
       "type": "timeseries"
     },
     {
@@ -885,13 +885,13 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Comparison of Spring Boot optimizations",
   "uid": "deaiuq750y4n4f",
-  "version": 7,
+  "version": 2,
   "weekStart": ""
 }
