@@ -32,8 +32,9 @@ public class FaultController {
 	}
 
 	private long fibonacciIterative(int n) {
-		if (n <= 1)
+		if (n <= 1) {
 			return n;
+		}
 
 		long prev = 0, curr = 1;
 		for (int i = 2; i <= n; i++) {
