@@ -1,0 +1,19 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="PetClinicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ACTIVE_PROFILES" value="postgres" />
+    <option name="ALTERNATIVE_JRE_PATH" value="17" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="POSTGRES_URL" value="jdbc:postgresql://localhost:35432/petclinic" />
+      <env name="PYROSCOPE_SERVER_ADDRESS" value="http://localhost:24040" />
+      <env name="SPRING_APPLICATION_NAME" value="petclinic-local" />
+      <env name="PYROSCOPE_APPLICATION_NAME" value="petclinic-local" />
+    </envs>
+    <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <module name="spring-petclinic" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.springframework.samples.petclinic.PetClinicApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

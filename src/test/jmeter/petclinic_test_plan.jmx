@@ -36,7 +36,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Fixed time counter">
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Fixed time counter" enabled="true">
           <stringProp name="ConstantTimer.delay">300</stringProp>
         </ConstantTimer>
         <hashTree/>
@@ -311,7 +311,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Results">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Results" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -344,7 +344,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregated report">
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregated report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

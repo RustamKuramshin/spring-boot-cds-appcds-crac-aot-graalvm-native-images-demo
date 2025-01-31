@@ -140,6 +140,16 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_DISABLE_LOGIN_FORM=true
 
+  # http://localhost:24040/
+  pyroscope:
+    image: grafana/pyroscope
+    container_name: pyroscope
+    ports:
+      - "24040:4040"
+    command: server
+    environment:
+      - PYROSCOPE_LOG_LEVEL=debug
+
   # http://localhost:29090/
   prometheus:
     image: prom/prometheus
