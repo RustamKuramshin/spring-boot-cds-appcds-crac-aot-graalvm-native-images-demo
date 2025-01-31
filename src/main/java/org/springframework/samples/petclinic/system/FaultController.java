@@ -24,7 +24,7 @@ public class FaultController {
 	public String stressMemory(@RequestParam(defaultValue = "500") int size) {
 		List<int[]> memoryEater = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
-			memoryEater.add(new int[10_000_000]); // 10 миллионов элементов (~40MB)
+			memoryEater.add(new int[10_000_000]);
 		}
 		return "Память загружена! Создано " + size + " больших объектов.";
 	}
