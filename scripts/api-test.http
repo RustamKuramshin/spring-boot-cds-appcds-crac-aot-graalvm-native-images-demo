@@ -7,4 +7,4 @@ GET http://localhost:8080/owners
 GET http://localhost:8080/fault/cpu?iterations=40000
 
 ### fault-2
-GET http://localhost:8080/fault/memory?size=500
+GET http://localhost:8080/fault/memory?size=50
