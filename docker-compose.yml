@@ -124,16 +124,21 @@ services:
 
   # http://localhost:23000/
   grafana:
-    build: './monitoring/config/grafana'
+    image: grafana/grafana:latest
     container_name: grafana
     ports:
       - "23000:3000"
     restart: always
     volumes:
+      - ./monitoring/config/grafana/provisioning:/etc/grafana/provisioning
       - ./monitoring/grafana:/var/lib/grafana
     environment:
+      - GF_INSTALL_PLUGINS=grafana-pyroscope-app
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
 
   # http://localhost:29090/
   prometheus:
