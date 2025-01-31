@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.system;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/fault")
 public class FaultController {
 
-	@GetMapping("/fault/cpu")
+	@GetMapping("/cpu")
 	public String stressCpu(@RequestParam(defaultValue = "100000") int iterations) {
 		long startTime = System.nanoTime();
 		long result = fibonacciIterative(iterations);
@@ -20,7 +22,7 @@ public class FaultController {
 				+ elapsedTime / 1_000_000 + " мс.";
 	}
 
-	@GetMapping("/fault/memory")
+	@GetMapping("/memory")
 	public String stressMemory(@RequestParam(defaultValue = "500") int size) {
 		List<int[]> memoryEater = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
