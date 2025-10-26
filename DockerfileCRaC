@@ -14,4 +14,7 @@ RUN ./mvnw clean package -DskipTests
 FROM cr.int.axiomjdk.ru/axiom-linux-23/axiom-runtime-container-pro:jdk-17-crac-musl
 WORKDIR /app
 
+# Directory for JFR snapshots (mounted from host via docker-compose)
+RUN mkdir -p /jfr
+
 COPY --from=builder /builder/target/spring-petclinic-*.jar /app/spring-petclinic.jar

@@ -1,0 +1,5 @@
+# Ignore all snapshot files by default
+*
+!.gitignore
+!*/
+!**/.gitkeep

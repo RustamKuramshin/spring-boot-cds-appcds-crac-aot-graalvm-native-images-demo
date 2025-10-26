@@ -15,6 +15,8 @@ services:
       - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
       - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
       - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
+    volumes:
+      - ./jfr/petclinic:/jfr
     tty: true
 
   petclinic-aot:
@@ -33,6 +35,8 @@ services:
       - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
       - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
       - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
+    volumes:
+      - ./jfr/petclinic-aot:/jfr
     tty: true
 
   petclinic-cds:
@@ -51,6 +55,8 @@ services:
       - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
       - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
       - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
+    volumes:
+      - ./jfr/petclinic-cds:/jfr
     tty: true
 
   petclinic-crac:
@@ -74,6 +80,7 @@ services:
       - SYS_PTRACE
     volumes:
       - ./crac-files:/app/crac-files
+      - ./jfr/petclinic-crac:/jfr
     command: >
       sh -c "
       if [ \"$CRAC_RESTORE\" = \"true\" ]; then
@@ -99,6 +106,8 @@ services:
       - SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=30000
       - SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT=600000
       - SPRING_DATASOURCE_HIKARI_MAX_LIFETIME=1800000
+    volumes:
+      - ./jfr/petclinic-native:/jfr
     tty: true
 
   petclinic-db:
