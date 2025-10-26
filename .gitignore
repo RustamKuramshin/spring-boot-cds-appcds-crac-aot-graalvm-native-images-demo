@@ -54,3 +54,4 @@ crac-files/*
 !crac-files/.gitkeep
 
 /scripts/jmeter.log
+*.jfr

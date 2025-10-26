@@ -29,9 +29,5 @@ COPY --from=extractor /extractor/extracted/spring-boot-loader/ ./
 COPY --from=extractor /extractor/extracted/snapshot-dependencies/ ./
 COPY --from=extractor /extractor/extracted/application/ ./
 
-# Enable JFR startup recording by default. Can be disabled with JFR_ENABLE=false
-ENV JFR_ENABLE=true \
-    JFR_DURATION=20m \
-    JFR_SETTINGS=profile
-
-CMD ["sh", "-c", "if [ \"$JFR_ENABLE\" = \"true\" ]; then exec java -XX:+FlightRecorder -XX:StartFlightRecording=duration=${JFR_DURATION:-20m},name=${SPRING_APPLICATION_NAME:-petclinic},settings=${JFR_SETTINGS:-profile},filename=/jfr/${SPRING_APPLICATION_NAME:-petclinic}-$(date +%Y%m%d-%H%M%S).jfr,dumponexit=true,disk=true -Djdk.tracePinnedThreads=full -Djdk.tracePinnedThreads.warning=true -Djdk.traceVirtualThreadLocals=true -jar spring-petclinic.jar; else exec java -jar spring-petclinic.jar; fi"]
+# Always record JFR at startup
+CMD ["sh", "-c", "exec java -XX:+FlightRecorder -XX:StartFlightRecording=duration=20m,name=${SPRING_APPLICATION_NAME:-petclinic},settings=profile,filename=/jfr/${SPRING_APPLICATION_NAME:-petclinic}-$(date +%Y%m%d-%H%M%S).jfr,dumponexit=true,disk=true -Djdk.tracePinnedThreads=full -Djdk.tracePinnedThreads.warning=true -Djdk.traceVirtualThreadLocals=true -jar spring-petclinic.jar"]
