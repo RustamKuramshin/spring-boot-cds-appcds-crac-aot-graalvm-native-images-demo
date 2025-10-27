@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 
-@Component
+//@Component
 public class PyroscopeConfig {
 
 	private final Environment environment;
