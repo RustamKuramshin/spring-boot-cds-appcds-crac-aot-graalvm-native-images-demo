@@ -3,29 +3,29 @@ scrape_configs:
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['host.docker.internal:8081']
+      - targets: ['host.docker.internal:8080']
   - job_name: 'petclinic'
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['petclinic:8081']
+      - targets: ['petclinic:8080']
   - job_name: 'petclinic-aot'
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['petclinic-aot:8081']
+      - targets: ['petclinic-aot:8080']
   - job_name: 'petclinic-cds'
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['petclinic-cds:8081']
+      - targets: ['petclinic-cds:8080']
   - job_name: 'petclinic-crac'
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['petclinic-crac:8081']
+      - targets: ['petclinic-crac:8080']
   - job_name: 'petclinic-native'
     scrape_interval: 5s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['petclinic-native:8081']
+      - targets: ['petclinic-native:8080']
