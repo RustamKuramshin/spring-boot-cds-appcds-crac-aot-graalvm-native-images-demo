@@ -55,3 +55,4 @@ crac-files/*
 
 /scripts/jmeter.log
 *.jfr
+/jars/
